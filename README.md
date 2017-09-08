@@ -58,7 +58,7 @@ Options:
 ```
 
 ## Metrics
-`crosslessness`:
+`crosslessness`: This metric is defined in [H. C. Purchase. Metrics for Graph Drawing Aesthetics. Journal of Visual Languages and Computing, 13(5):501–516, 2002](http://www.sciencedirect.com/science/article/pii/S1045926X02902326).
 ```shell
 > ./glam ../data/cond-mat.json -m crosslessness
 Loading graph: ../data/cond-mat.json
@@ -66,7 +66,7 @@ Computing metric: crosslessness
 crosslessness=0.995231 (num_edge_crossings=5396100)
 ```
 
-`edge_length_cv`:
+`edge_length_cv`: This metric is defined in [S. Hachul and M. Junger. Large-Graph Layout Algorithms at Work: An Experimental Study. Journal of Graph Algorithms and Applications, 11(2):345–369, 2007](http://jgaa.info/getPaper?id=150). The normalized definition is in [our paper](https://goo.gl/Y8e9iH).
 ```shell
 > ./glam ../data/cond-mat.json -m edge_length_cv
 Loading graph: ../data/cond-mat.json
@@ -74,7 +74,7 @@ Computing metric: edge_length_cv
 edge_length_cv=0.724552 (normalized_cv=0.00332122)
 ```
 
-`min_angle`:
+`min_angle`: This metric is defined in [H. C. Purchase. Metrics for Graph Drawing Aesthetics. Journal of Visual Languages and Computing, 13(5):501–516, 2002](http://www.sciencedirect.com/science/article/pii/S1045926X02902326).
 ```shell
 > ./glam ../data/cond-mat.json -m min_angle
 Loading graph: ../data/cond-mat.json
@@ -82,7 +82,7 @@ Computing metric: min_angle
 min_angle=0.397181
 ```
 
-`shape_delaunay`;
+`shape_delaunay`: This metric is defined in [P. Eades, S.-H. Hong, A. Nguyen, and K. Klein. Shape-Based Quality Metrics for Large Graph Visualization. Journal of Graph Algorithms and Applications, 21(1):29–53, 2017](http://jgaa.info/getPaper?id=405).
 ```shell
 > ./glam ../data/power.json -m shape_delaunay
 Loading graph: ../data/power.json
@@ -90,7 +90,7 @@ Computing metric: shape_delaunay
 shape_delaunay=0.274121
 ```
 
-`shape_gabriel`;
+`shape_gabriel`: This metric is defined in [P. Eades, S.-H. Hong, A. Nguyen, and K. Klein. Shape-Based Quality Metrics for Large Graph Visualization. Journal of Graph Algorithms and Applications, 21(1):29–53, 2017](http://jgaa.info/getPaper?id=405).
 ```shell
 > ./glam ../data/power.json -m shape_gabriel
 Loading graph: ../data/power.json
