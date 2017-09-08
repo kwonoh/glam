@@ -13,10 +13,12 @@ A high-performance implementation for computing graph layout aesthetic metrics d
 ```
 
 ## Requirements
+- C++11 or higher
 - [Boost](http://www.boost.org/) 1.62 or higher
 - [Intel TBB](https://www.threadingbuildingblocks.org/)
 - [OpenCL](https://www.khronos.org/opencl/)
 - [CGAL](https://www.cgal.org/)
+- [JSON for Modern C++ (included)](https://github.com/nlohmann/json)
 
 ## Build
 ```shell
