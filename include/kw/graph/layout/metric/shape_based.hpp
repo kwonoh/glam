@@ -26,37 +26,6 @@
 namespace kw {
 
 #ifdef KW_USE_CGAL
-// template <typename Points, typename DelaunayGraph>
-// void
-// delaunay_triangulation(Points const& points, DelaunayGraph& dg)
-// {
-//     namespace bg = boost::geometry;
-//
-//     typedef typename boost::graph_traits<DelaunayGraph>::vertex_descriptor
-//         vertex_descriptor;
-//
-//     typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
-//     typedef CGAL::Triangulation_vertex_base_with_info_2<vertex_descriptor, K>
-//         Vb;
-//     typedef CGAL::Triangulation_data_structure_2<Vb> Tds;
-//     typedef CGAL::Delaunay_triangulation_2<K, Tds> Delaunay;
-//     typedef typename Delaunay::Point DPoint;
-//
-//     Delaunay dt;
-//     for (auto const& p : points) {
-//         dt.insert(DPoint(bg::get<0>(p), bg::get<1>(p)))->info() =
-//             boost::add_vertex(dg);
-//     }
-//
-//     for (auto e_itr = dt.finite_edges_begin(), e_end = dt.finite_edges_end();
-//          e_itr != e_end; ++e_itr) {
-//         auto const f = e_itr->first;
-//         auto const i = e_itr->second;
-//         vertex_descriptor const s = f->vertex(dt.cw(i))->info();
-//         vertex_descriptor const t = f->vertex(dt.ccw(i))->info();
-//         boost::add_edge(s, t, dg);
-//     }
-// }
 template <typename DelaunayGraph, typename PositionMap>
 void
 delaunay_triangulation(DelaunayGraph& g, PositionMap pos)
