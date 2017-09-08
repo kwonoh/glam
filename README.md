@@ -8,7 +8,7 @@ A high-performance implementation for computing graph layout aesthetic metrics d
     year={2018},
     volume={24},
     number={1},        
-    note = {To appear}
+    note={To appear}
 }
 ```
 
