@@ -128,3 +128,6 @@ JSON format:
     ]
 }
 ```
+
+## Acknowledgement
+This research has been sponsored by the U.S. National Science Foundation through grant IIS-1741536: Critical Visualization Technologies for Analyzing and Understanding Big Network Data.
