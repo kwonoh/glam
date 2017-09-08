@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+IndentWidth: 4
+Standard: Cpp11
+ContinuationIndentWidth: 4
+ConstructorInitializerIndentWidth: 4
+AccessModifierOffset: -4
+DerivePointerAlignment: false
+PointerAlignment: Left
+BreakBeforeBraces: Stroustrup
+BinPackParameters: false
+AlwaysBreakAfterDefinitionReturnType: true
+AllowShortFunctionsOnASingleLine: None
