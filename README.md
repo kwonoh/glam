@@ -11,6 +11,7 @@ A high-performance implementation for computing graph layout aesthetic metrics d
     note={To appear}
 }
 ```
+Oh-Hyun Kwon, Tarik Crnovrsanin, and Kwan-Liu Ma are with [VIDI Labs](http://vidi.cs.ucdavis.edu/) at the University of California, Davis.
 
 ## Requirements
 - C++11 or higher
