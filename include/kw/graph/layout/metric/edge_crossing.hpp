@@ -322,6 +322,7 @@ crosslessness_impl(
         auto const d = boost::degree(u, g);
         n_impossible += d * (d - 1);
     }
+    n_impossible /= 2;
     auto const n_max = n_all - n_impossible;
     return n_max > 0 ? 1.0 - (double(n_crossings) / n_max) : 0;
 }
