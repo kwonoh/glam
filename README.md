@@ -34,7 +34,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release; make
 > ./glam ../data/karate.dot -m crosslessness
 Loading graph: ../data/karate.json
 Computing metric: crosslessness
-crosslessness=0.96302 (num_edge_crossings=72)
+crosslessness=0.970909 (num_edge_crossings=72)
 
 # multiple files and metrics
 > ./glam ../data/karate.dot ../data/power.json -m crosslessness shape_gabriel
@@ -66,7 +66,7 @@ Options:
 > ./glam ../data/cond-mat.json -m crosslessness
 Loading graph: ../data/cond-mat.json
 Computing metric: crosslessness
-crosslessness=0.995231 (num_edge_crossings=5396100)
+crosslessness=0.995233 (num_edge_crossings=5396100)
 ```
 
 `edge_length_cv`: This metric is defined in [S. Hachul and M. Junger. Large-Graph Layout Algorithms at Work: An Experimental Study. Journal of Graph Algorithms and Applications, 11(2):345–369, 2007](http://jgaa.info/getPaper?id=150). The normalized definition is in [our paper](https://goo.gl/Y8e9iH).
