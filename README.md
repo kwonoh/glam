@@ -40,7 +40,7 @@ crosslessness=0.970909 (num_edge_crossings=72)
 > ./glam ../data/karate.dot ../data/power.json -m crosslessness shape_gabriel
 Loading graph: ../data/karate.dot
 Computing metric: crosslessness
-crosslessness=0.96302 (num_edge_crossings=72)
+crosslessness=0.970909 (num_edge_crossings=72)
 Computing metric: shape_gabriel
 shape_gabriel=0.376176
 
