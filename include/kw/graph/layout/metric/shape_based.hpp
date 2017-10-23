@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef VIDI_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
-#define VIDI_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
+#ifndef KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
+#define KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
 
 #include <cmath>
 #include <iostream>
@@ -168,4 +168,4 @@ shape_based_metric(Graph const& graph, ShapeGraph const& shape)
 
 }  // namespace kw
 
-#endif  // VIDI_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
+#endif  // KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
