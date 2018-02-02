@@ -7,8 +7,8 @@ A high-performance implementation for computing graph layout aesthetic metrics d
     journal={IEEE Transactions on Visualization and Computer Graphics},
     year={2018},
     volume={24},
-    number={1},        
-    note={To appear}
+    number={1},
+    pages={478-488}
 }
 ```
 Oh-Hyun Kwon, Tarik Crnovrsanin, and Kwan-Liu Ma are with [VIDI Labs](http://vidi.cs.ucdavis.edu/) at the University of California, Davis.
