@@ -324,7 +324,7 @@ crosslessness_impl(
     }
     n_impossible /= 2;
     auto const n_max = n_all - n_impossible;
-    return n_max > 0 ? 1.0 - (double(n_crossings) / n_max) : 0;
+    return n_max > 0 ? 1.0 - (double(n_crossings) / n_max) : 1.0;
 }
 
 }  // namespace detail
