@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
-#define KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
+#ifndef __KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP__
+#define __KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP__
 
 #include <cmath>
 #include <iostream>
@@ -22,6 +22,8 @@
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Triangulation_vertex_base_with_info_2.h>
 #endif
+
+#include <kw/iterator_range.hpp>
 
 namespace kw {
 
@@ -127,9 +129,8 @@ shape_based_metric(Graph const& graph, ShapeGraph const& shape)
 
     std::vector<double> jaccard_similarities(boost::num_vertices(graph));
 
-    tbb::task_group task_group;
-    BOOST_FOREACH (auto g_u, boost::vertices(graph)) {
-        task_group.run([&, g_u] {
+    tbb::parallel_for_each(
+        kw::make_iterator_range(boost::vertices(graph)), [&](auto const g_u) {
             auto const g_u_idx = g_vp_idx[g_u];
             auto const s_u = s_v_descs[g_u_idx];
             assert(s_vp_idx[s_u] == g_u_idx);
@@ -158,8 +159,6 @@ shape_based_metric(Graph const& graph, ShapeGraph const& shape)
             jaccard_similarities[g_u_idx] =
                 double(adjs_intersection.size()) / double(adjs_union.size());
         });
-    }
-    task_group.wait();
 
     return std::accumulate(jaccard_similarities.begin(),
                            jaccard_similarities.end(), 0.0) /
@@ -168,4 +167,4 @@ shape_based_metric(Graph const& graph, ShapeGraph const& shape)
 
 }  // namespace kw
 
-#endif  // KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP
+#endif  // __KW_GRAPH_LAYOUT_METRIC_SHAPE_BASED_HPP__

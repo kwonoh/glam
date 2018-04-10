@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef KW_GRAPH_LAYOUT_AESTHETIC_EDGE_CROSSINGS_HPP
-#define KW_GRAPH_LAYOUT_AESTHETIC_EDGE_CROSSINGS_HPP
+#ifndef __KW_GRAPH_LAYOUT_METRIC_EDGE_CROSSING_HPP__
+#define __KW_GRAPH_LAYOUT_METRIC_EDGE_CROSSING_HPP__
 
 #include <cmath>
 #include <mutex>
@@ -348,4 +348,4 @@ crosslessness(Graph const& g, PositionMap pos)
 
 }  // namespace kw
 
-#endif  // KW_GRAPH_LAYOUT_AESTHETIC_EDGE_CROSSINGS_HPP
+#endif  // __KW_GRAPH_LAYOUT_METRIC_EDGE_CROSSING_HPP__

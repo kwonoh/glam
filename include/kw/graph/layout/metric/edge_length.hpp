@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef KW_GRAPH_LAYOUT_AESTHETIC_EDGE_LENGTHS_HPP
-#define KW_GRAPH_LAYOUT_AESTHETIC_EDGE_LENGTHS_HPP
+#ifndef __KW_GRAPH_LAYOUT_METRIC_EDGE_LENGTH_HPP__
+#define __KW_GRAPH_LAYOUT_METRIC_EDGE_LENGTH_HPP__
 
 #include <cmath>
 
@@ -13,10 +13,15 @@
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/variance.hpp>
+
 #include <boost/foreach.hpp>
 #include <boost/geometry.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/math/special_functions/pow.hpp>
+#include <boost/range/combine.hpp>
+
+#include <kw/algorithm/normalize.hpp>
+#include <kw/iterator_range.hpp>
 
 namespace kw {
 
@@ -25,30 +30,22 @@ template <typename Graph, typename PositionMap>
 double
 edge_length_cv(Graph const& g, PositionMap pos)
 {
+    typedef typename boost::graph_traits<Graph>::edge_descriptor edge_desc;
     auto const num_edges = boost::num_edges(g);
     std::vector<double> lengths(num_edges);
 
-    tbb::task_group task_group;
-    std::size_t edge_idx = 0;
-    BOOST_FOREACH (auto e, boost::edges(g)) {
-        task_group.run([&, e, edge_idx] {
+    tbb::parallel_for_each(
+        boost::combine(kw::make_iterator_range(boost::edges(g)), lengths),
+        [&](auto itr) {
+            auto const e = boost::get<0>(itr);
+            auto& l = boost::get<1>(itr);
+
             auto const p = boost::get(pos, boost::source(e, g));
             auto const q = boost::get(pos, boost::target(e, g));
-            lengths[edge_idx] = boost::geometry::distance(p, q);
+            l = boost::geometry::distance(p, q);
         });
-        edge_idx++;
-    }
-    task_group.wait();
 
-    auto minmax_itr = std::minmax_element(lengths.begin(), lengths.end());
-    auto const min_length = *minmax_itr.first;
-    auto const max_length = *minmax_itr.second;
-    auto const length_range = max_length - min_length;
-
-    tbb::parallel_for(std::size_t(0), num_edges, std::size_t(1),
-                      [&](std::size_t const i) {
-                          lengths[i] = (lengths[i] - min_length) / length_range;
-                      });
+    kw::minmax_normalize(lengths);
 
     auto const sum = tbb::parallel_reduce(
         tbb::blocked_range<size_t>(0, num_edges), double(0),
@@ -103,4 +100,4 @@ edge_length_normalized_cv(Graph const& g, PositionMap pos)
 
 }  // namespace kw
 
-#endif  // KW_GRAPH_LAYOUT_AESTHETIC_EDGE_LENGTHS_HPP
+#endif  // __KW_GRAPH_LAYOUT_METRIC_EDGE_LENGTH_HPP__

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP
-#define KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP
+#ifndef __KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP__
+#define __KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP__
 
 #include <cmath>
 
@@ -13,6 +13,8 @@
 #include <boost/foreach.hpp>
 #include <boost/geometry.hpp>
 #include <boost/graph/adjacency_list.hpp>
+
+#include <kw/iterator_range.hpp>
 
 namespace kw {
 
@@ -42,9 +44,8 @@ min_angle_metric(Graph const& g, PositionMap pos)
     auto const num_vertices = boost::num_vertices(g);
     std::vector<double> avg_dev_min_angles(num_vertices, 0.0);
 
-    tbb::task_group task_group;
-    BOOST_FOREACH (auto u, boost::vertices(g)) {
-        task_group.run([&, u] {
+    tbb::parallel_for_each(
+        kw::make_iterator_range(boost::vertices(g)), [&](auto const u) {
             auto const u_degree = boost::out_degree(u, g);
             if (u_degree > 1) {
                 double const desired_angle =
@@ -101,8 +102,6 @@ min_angle_metric(Graph const& g, PositionMap pos)
                     std::abs((desired_angle - min_angle) / desired_angle);
             }
         });
-    }
-    task_group.wait();
 
     return boost::algorithm::clamp(
         1.0 - std::accumulate(avg_dev_min_angles.begin(),
@@ -113,4 +112,4 @@ min_angle_metric(Graph const& g, PositionMap pos)
 
 }  // namespace kw
 
-#endif  // KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP
+#endif  // __KW_GRAPH_LAYOUT_METRIC_MINIMUM_ANGLE_HPP__

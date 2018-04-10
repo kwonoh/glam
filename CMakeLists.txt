@@ -4,7 +4,7 @@ project(aesthetic-metrics)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/modules)
 set(CMAKE_VERBOSE_MAKEFILE on)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 find_package(TBB)
 if(TBB_FOUND)
