@@ -45,7 +45,8 @@ edge_length_cv(Graph const& g, PositionMap pos)
             l = boost::geometry::distance(p, q);
         });
 
-    kw::minmax_normalize(lengths);
+    bool const same = !kw::minmax_normalize(lengths);
+    if (same) return 0.0;
 
     auto const sum = tbb::parallel_reduce(
         tbb::blocked_range<size_t>(0, num_edges), double(0),

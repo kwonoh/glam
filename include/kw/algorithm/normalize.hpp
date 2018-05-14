@@ -13,15 +13,19 @@
 
 #include <algorithm>
 
+#include <kw/math/comparison.hpp>
+
 namespace kw {
 
 template <typename Container>
-void
+bool
 minmax_normalize(Container& c)
 {
     auto const minmax = std::minmax_element(c.begin(), c.end());
     auto const min = *minmax.first;
     auto const max = *minmax.second;
+    if (kw::epsilon_equal(min, max)) return false;
+
     auto const range = max - min;
 
 #ifdef KW_USE_TBB
@@ -30,6 +34,7 @@ minmax_normalize(Container& c)
     std::transform(std::begin(c), std::end(c), std::begin(c),
                    [&](auto const x) { return (x - min) / range; });
 #endif
+    return true;
 }
 
 }  // namespace kw
