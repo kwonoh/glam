@@ -258,6 +258,10 @@ num_edge_crossings(Graph const& g, PositionMap pos)
         }
     }
 
+    if (devices.size() == 0) {
+        throw std::runtime_error("Unable to find OpenCL devices");
+    }
+
     std::size_t const n_edges = boost::num_edges(g);
 
     std::size_t const work_size_1d =
