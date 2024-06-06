@@ -1,12 +1,11 @@
-cmake_minimum_required(VERSION 3.1)
-project(aesthetic-metrics)
+cmake_minimum_required(VERSION 3.5)
+project(glam)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/modules)
 set(CMAKE_VERBOSE_MAKEFILE on)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(TBB)
+find_package(TBB REQUIRED)
 if(TBB_FOUND)
     include_directories(${TBB_INCLUDE_DIRS})
     link_directories(${TBB_LIBRARY_DIRS})
@@ -35,7 +34,7 @@ else()
     message(FATAL_ERROR "Unable to find boost")
 endif()
 
-find_package(OpenCL)
+find_package(OpenCL REQUIRED)
 if (OpenCL_FOUND)
     include_directories(${OpenCL_INCLUDE_DIRS})
 else()
@@ -45,4 +44,5 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 add_executable(glam src/main.cpp)
-target_link_libraries(glam ${Boost_LIBRARIES} ${TBB_LIBRARIES} ${OpenCL_LIBRARIES})
+target_link_libraries(glam ${Boost_LIBRARIES} ${OpenCL_LIBRARIES} TBB::tbb)
+
