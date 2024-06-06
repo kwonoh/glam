@@ -89,10 +89,9 @@ load_graph(std::string const& filepath, Graph& g, PositionMap vp_pos) {
 template <typename PositionMap>
 void
 compute_crosslessness(Graph const& g, PositionMap vp_pos) {
-  edges_size_type num_crossings;
-  double const crosslessness = kw::crosslessness(g, vp_pos, num_crossings);
-  std::cout << "crosslessness=" << crosslessness
-            << " (num_edge_crossings=" << num_crossings << ")" << std::endl;
+  auto const result = kw::crosslessness(g, vp_pos);
+  std::cout << "crosslessness=" << result.first
+            << " (num_edge_crossings=" << result.second << ")" << std::endl;
 }
 
 template <typename PositionMap>
