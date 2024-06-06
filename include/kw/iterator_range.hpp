@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef __KW_ITERATOR_RANGE_HPP__
-#define __KW_ITERATOR_RANGE_HPP__
+#ifndef KW_ITERATOR_RANGE_HPP
+#define KW_ITERATOR_RANGE_HPP
 
 #include <boost/range.hpp>
 
@@ -12,11 +12,10 @@ namespace kw {
 
 template <typename Iterator>
 boost::iterator_range<Iterator>
-make_iterator_range(std::pair<Iterator, Iterator> const& p)
-{
-    return boost::make_iterator_range(p.first, p.second);
+make_iterator_range(std::pair<Iterator, Iterator> const& p) {
+  return boost::make_iterator_range(p.first, p.second);
 }
 
 }  // namespace kw
 
-#endif  // __KW_ITERATOR_RANGE_HPP__
+#endif  // KW_ITERATOR_RANGE_HPP
